@@ -44,7 +44,7 @@ import numpy as np
 from numpy import linalg as LA
 
 # Construct the raw matrix G
-G = np.array([
+adj_mat = np.array([
     # A, B, C, D, E, F, G, H, I, J, K, L
     [0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0], # A
     [1, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0], # B
@@ -61,8 +61,8 @@ G = np.array([
 ])
 
 # Normalize the adjacency matrix to get the google matrix G
-row_sums = G.sum(axis = 1, keepdims = True)
-G = np.divide(G, row_sums, where = row_sums != 0)
+row_sums = adj_mat.sum(axis = 1, keepdims = True)
+G = np.divide(adj_mat, row_sums, where = row_sums != 0)
 
 # Handling dangling nodes (rows with sum 0)
 dangling_nodes = row_sums.flatten() == 0
